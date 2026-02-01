@@ -40,7 +40,7 @@ $query = "SELECT * FROM notes";
                     <td>
                         <?= htmlspecialchars($content) ?>
                     </td>
-                    <td>
+                    <td style="color: <?= ($status === 'draft') ? 'green' : 'red' ?>">
                         <?= htmlspecialchars($status) ?>
                     </td>
                     <td>
@@ -52,6 +52,8 @@ $query = "SELECT * FROM notes";
             <?php endwhile; ?>
         <?php endif; ?>
     </table>
+    <a href="add_note.php">Add Note</a>
+    <br><br>
     <h1>SEARCH</h1>
     <form method="post">
         <label for="title">Title</label>

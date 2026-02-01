@@ -59,8 +59,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                     <td>
                         <?= htmlspecialchars($created_at) ?>
                     </td>
-                    <td><a href="edit.php?id=<?= $id ?>">Edit</a></td>
-                    <td><a href="delete.php?id=<?= $id ?>">Delete</a></td>
+                    <td><a href="edit_note.php?id=<?= $id ?>">Edit</a></td>
+                    <td><a href="delete_note.php?id=<?= $id ?>">Delete</a></td>
                     <td>
                         <?php if($status !== 'published'): ?>
                             <form method="post">

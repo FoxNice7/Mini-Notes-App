@@ -26,8 +26,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         <label for="title">Title</label>
         <input type="text" name="title" id="title">
         <br>
-        <label for="content">Content</label>
-        <input type="text" name="content" id="content">
+        <label for="content">Content</label><br>
+        <textarea name="content" id="content" cols="30" rows="10"></textarea>
         <br>
         <button type="submit">UPDATE</button>
     </form>

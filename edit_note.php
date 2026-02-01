@@ -11,7 +11,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     header("Location: index.php");
     exit;
 }
-if(isset($_GET['id'])){
+if(!empty($_GET['id'])){
     $id = (int) $_GET['id'];
     $stmt = $mysqli->prepare("SELECT title, content FROM notes WHERE id = ?");
     $stmt->bind_param("i",$id);

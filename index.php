@@ -97,7 +97,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $stmt->execute();
                 $stmt->bind_result($id, $title, $content2, $status, $created_at);
                 if ($stmt->fetch()) {
-                    echo "ID: " . $id . " TITLE: " . $title . " CONTENT: " . $content . " STATUS: " . $status . " CREATED AT: " . $created_at;
+                    echo "ID: " . htmlspecialchars($id) . " TITLE: " . htmlspecialchars($title) . " CONTENT: " . htmlspecialchars($content2) . " STATUS: " . htmlspecialchars($status) . " CREATED AT: " . htmlspecialchars($created_at);
                 } else {
                     echo "No notes found with the given title.";
                 }
@@ -111,7 +111,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $stmt->execute();
                 $stmt->bind_result($id, $title, $content2, $status, $created_at);
                 if ($stmt->fetch()) {
-                    echo "ID: " . $id . " TITLE: " . $title . " CONTENT: " . $content . " STATUS: " . $status . " CREATED AT: " . $created_at;
+                    echo "ID: " . htmlspecialchars($id) . " TITLE: " . htmlspecialchars($title) . " CONTENT: " . htmlspecialchars($content2) . " STATUS: " . htmlspecialchars($status) . " CREATED AT: " . htmlspecialchars($created_at);
                 } else {
                     echo "No notes found with the given content.";
                 }

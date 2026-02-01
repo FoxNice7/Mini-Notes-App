@@ -3,7 +3,6 @@ include 'db.php';
 
 $query = "SELECT * FROM notes";
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +21,8 @@ $query = "SELECT * FROM notes";
             <th>Content</th>
             <th>Status</th>
             <th>Created At</th>
+            <th>Edit</th>
+            <th>Delete</th>
         </tr>
         <?php if ($result = $mysqli->prepare($query)): ?>
             <?php
@@ -45,6 +46,8 @@ $query = "SELECT * FROM notes";
                     <td>
                         <?= htmlspecialchars($created_at) ?>
                     </td>
+                    <td><a href="edit.php?id=<?= $id ?>">Edit</a></td>
+                    <td><a href="delete.php?id=<?= $id ?>">Delete</a></td>
                 </tr>
             <?php endwhile; ?>
         <?php endif; ?>

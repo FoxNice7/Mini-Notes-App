@@ -60,7 +60,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                         <?= htmlspecialchars($created_at) ?>
                     </td>
                     <td><a href="edit_note.php?id=<?= $id ?>">Edit</a></td>
-                    <td><a href="delete_note.php?id=<?= $id ?>">Delete</a></td>
+                    <td>
+                        <form method="post" action="delete_note.php">
+                            <input type="hidden" name="id" value="<?= $id ?>">
+                            <button type="submit" name="delete">Delete</button>
+                        </form>
+                    </td>
                     <td>
                         <?php if($status !== 'published'): ?>
                             <form method="post">
@@ -90,7 +95,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     <div class="box">
         <?php
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if (isset($_POST['title'])) {
+            if (!empty($_POST['title'])) {
                 $title = (string) $_POST['title'];
                 $stmt = $mysqli->prepare("SELECT * FROM notes WHERE title = ?");
                 $stmt->bind_param("s", $title);
@@ -103,7 +108,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 }
                 $stmt->close();
             }
-            if (isset($_POST['content'])) {
+            if (!empty($_POST['content'])) {
                 $content = (string) $_POST['content'];
                 $stmt = $mysqli->prepare("SELECT * FROM notes WHERE content LIKE ?");
                 $content = "%$content%";

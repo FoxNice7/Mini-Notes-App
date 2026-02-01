@@ -3,6 +3,18 @@ include 'db.php';
 
 $query = "SELECT * FROM notes";
 
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+    if(isset($_POST['publish'])){
+        $id = (int) $_POST['publish'];
+        $stmt = $mysqli->prepare("UPDATE notes SET status = 'published' WHERE id = ?");
+        $stmt->bind_param('i',$id);
+        $stmt->execute();
+        $stmt->close();
+        header("Location: index.php");
+        exit;
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,6 +35,7 @@ $query = "SELECT * FROM notes";
             <th>Created At</th>
             <th>Edit</th>
             <th>Delete</th>
+            <th>Published</th>
         </tr>
         <?php if ($result = $mysqli->prepare($query)): ?>
             <?php
@@ -48,6 +61,15 @@ $query = "SELECT * FROM notes";
                     </td>
                     <td><a href="edit.php?id=<?= $id ?>">Edit</a></td>
                     <td><a href="delete.php?id=<?= $id ?>">Delete</a></td>
+                    <td>
+                        <?php if($status !== 'published'): ?>
+                            <form method="post">
+                                <button type="submit" name="publish" value="<?= $id; ?>">Publish</button>
+                            </form>
+                        <?php else: ?>
+                            ✔
+                        <?php endif; ?>
+                    </td>
                 </tr>
             <?php endwhile; ?>
         <?php endif; ?>
